@@ -7,6 +7,8 @@ gem 'rails', '3.1.0'
 
 gem 'sqlite3', '1.3.4'
 
+gem 'gravatar_image_tag', '0.1.0'
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
