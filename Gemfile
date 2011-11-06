@@ -9,6 +9,8 @@ gem 'sqlite3', '1.3.4'
 
 gem 'aws-s3'
 
+gem "paperclip", "~> 2.4"
+
 gem 'gravatar_image_tag', '0.1.0'
 
 gem 'will_paginate', '3.0.pre2'

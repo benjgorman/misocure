@@ -3,8 +3,10 @@
 <ul>
 	<li><%= link_to "About", about_path %></li>
 	<li><%= link_to "Contact", contact_path %></li>
-	<li>News</li>
-	<li>Benjamin Gomrman</li>
+	<% if signed_in? %>
+	<li><%= link_to "Manage a Band or Artist?", newartist_path %></li>
+	<%end%>
+	<li><a href="http://www.benjgorman.com">Benjamin Gomrman</a></li>
 	</ul>
 	</nav>
 </footer>

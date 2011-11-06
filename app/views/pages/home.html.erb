@@ -1,6 +1,8 @@
-	<h1>Misocure</h1>
-		<p>
-			This is the home page for Misocure.
-		</p>
-		
-		<%= link_to "Sign up now!", signup_path, :class => "signup_button round" %>
+<% if signed_in? %>
+<h3>Welcome back <%= current_user.name %></h3>
+<% else %>
+<p>Home page bleh</p>
+
+
+<%= link_to "Sign up now!", signup_path, :class => "signup_button round" %>
+<% end %>
