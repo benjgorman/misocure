@@ -1,0 +1,8 @@
+development:
+  bucket: misocure_dev
+  access_key_id: AKIAJHSERG2PT2E4YX4A
+  secret_access_key: 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
+production:
+  bucket: misocure_production
+  access_key_id: AKIAJHSERG2PT2E4YX4A
+  secret_access_key: 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
