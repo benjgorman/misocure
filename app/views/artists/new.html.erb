@@ -1,0 +1,20 @@
+<h1>Artist Sign Up</h1>
+
+<%= form_for @artist  , :html => { :multipart => true } do |f| %>
+
+	<%= render 'shared/error_messages', :object => f.object %>
+	<div class="field">
+		<%= f.label :name %><br />
+		<%= f.text_field :name %>
+	</div>
+	<div class="field">
+		 <%= f.file_field :photo %>
+	</div>
+	<div class="field">
+		<%= f.label :bio %><br />
+		<%= f.text_field :bio %>
+	</div>
+	<div class="actions">
+		<%= f.submit "Sign up" %>
+	</div>
+<% end %>

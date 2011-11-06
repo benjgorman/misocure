@@ -1,0 +1,11 @@
+<div class="profile">
+	<div class = "main">
+		
+	<%= @artist.name %>
+	<%= @artist.bio %>
+	
+	<% if @artist.photo.exists? then %>
+	<%= image_tag @artist.photo.url(:small) %>
+	<% end %>
+	
+</div>

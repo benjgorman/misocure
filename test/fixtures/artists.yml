@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
+
+one:
+  bio: MyString
+  name: MyString
+  user_id: 1
+
+two:
+  bio: MyString
+  name: MyString
+  user_id: 1

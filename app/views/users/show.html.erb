@@ -1,0 +1,16 @@
+<div class="profile">
+	<div class = "main">
+	<h2>
+	<%= gravatar_for @user %>
+	<%= @user.name %>
+	</div>
+	
+	
+	
+	</h2> 
+	<div class = "sidebar round"> 
+		<strong>Name</strong>   <%= @user.name %><br />
+		<strong>URL</strong> <%= link_to user_path(@user), @user %><br />
+		<strong>Artists</strong> <%= @user.artists.count %>
+	</div>
+</div>

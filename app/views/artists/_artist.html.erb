@@ -1,0 +1,11 @@
+<div>
+	<div class="artist">
+		<span class="name"><%= artist.name %></span>
+		<span class="name"><%= artist.bio %></span>
+		<span class="timestamp">
+			<br>Created at <%= time_ago_in_words(artist.created_at) %> .
+		</span>
+		
+		| <%= link_to 'Delete?', artist, :method => :delete %>
+	</div>
+</div>
