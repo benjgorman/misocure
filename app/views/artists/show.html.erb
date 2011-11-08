@@ -8,4 +8,13 @@
 	<%= image_tag @artist.photo.url(:small) %>
 	<% end %>
 	
+	<% unless @artist.albums.empty? %>
+		<div class = "albumlist">
+			<%= render @albums %>
+		</div>
+		<%= will_paginate @albums %>
+	<% end %>
+	
+	<br>
+	
 </div>

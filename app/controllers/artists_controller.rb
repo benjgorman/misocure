@@ -14,11 +14,13 @@ class ArtistsController < ApplicationController
   end
   
   def create
-    @artist = current_user.artists.build(params[:artist])
+    @artist = current_user.artists.new(params[:artist])
+    
     if @artist.save
       flash[:success] = "Artist created!"
       redirect_to root_path
     else
+      flash.now[:message] = @artist.errors.first 
       render 'pages/home'
     end
   end
@@ -36,13 +38,14 @@ class ArtistsController < ApplicationController
   
   def show
     @artist = Artist.find(params[:id])
+    @albums = @artist.albums.paginate(:page => params[:page])
     @title = @artist.name
   end
   
   private
     def authorized_user
       @artist = Artist.find(params[:id])
-      redirect_to root_path unless current_user?(@micropost.user)
+      redirect_to root_path unless current_user?(@artist.user)
     end
   
 end

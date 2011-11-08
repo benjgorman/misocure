@@ -1,0 +1,14 @@
+<div class="album">
+	<div class = "main">
+		
+	<%= @album.name %>
+	<%= @album.desc %>
+	
+	<% unless @album.songs.empty? %>
+		<div class = "albumlist">
+			<%= render @songs %>
+		</div>
+		<%= will_paginate @songs %>
+	<% end %>
+	
+</div>
