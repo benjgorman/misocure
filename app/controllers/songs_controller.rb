@@ -12,8 +12,8 @@ class SongsController < ApplicationController
   end
   
   def create
-     @album = Album.find(params[:album_id])
-     @song = @album.songs.build(params[:album])
+     @album = Album.find(params[:id])
+     @song = @album.songs.build(params[:song])
      
     if @song.save
       flash[:success] = "Song created!"
@@ -27,7 +27,7 @@ class SongsController < ApplicationController
   def new
     @album = Album.find(params[:album_id])
     @song = @album.songs.build
-    @title = "Upload a Song"
+    @title = "album Sign Up"
   end
   
   def show    
