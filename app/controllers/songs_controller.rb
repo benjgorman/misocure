@@ -12,7 +12,7 @@ class SongsController < ApplicationController
   end
   
   def create
-     @album = Album.find(params[:id])
+     @album = Album.find(params[:artist_id])
      @song = @album.songs.build(params[:song])
      
     if @song.save
