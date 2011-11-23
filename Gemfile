@@ -5,6 +5,8 @@ gem 'rails', '3.1.0'
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
 
+gem 'activemerchant'
+
 gem 'sqlite3', '1.3.4'
 
 gem 'aws-s3'

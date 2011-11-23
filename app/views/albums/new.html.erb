@@ -1,5 +1,5 @@
 <h1>Artist Sign Up</h1>
-<%= form_for [@artist, @album] do |f| %>
+<%= form_for [@artist, @album], :html => { :multipart => true } do |f| %>
 
 	<%= render 'shared/error_messages', :object => f.object %>
 	<div class="field">
@@ -9,6 +9,9 @@
 	<div class="field">
 		<%= f.label :desc %><br />
 		<%= f.text_field :desc %>
+	</div>
+	<div class="field">
+		 <%= f.file_field :photo %>
 	</div>
 	<div class="actions">
 		<%= f.submit "Add up" %>

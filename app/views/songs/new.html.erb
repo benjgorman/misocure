@@ -1,0 +1,18 @@
+<h1>Song Upload</h1>
+<%= form_for [@album, @song], :html => { :multipart => true }  do |f| %>
+
+	<%= render 'shared/error_messages', :object => f.object %>
+	
+	<div class="field">
+		<%= f.label :name %><br />
+		<%= f.text_field :name %>
+	</div>
+	
+	<div class="field">
+		 <%= f.file_field :song %>
+	</div>
+	
+	<div class="actions">
+		<%= f.submit "Sign up" %>
+	</div>
+<% end %>

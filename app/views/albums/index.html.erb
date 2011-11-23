@@ -1,9 +1,12 @@
 <h1>All Albums</h1>
 
-<%= will_paginate %>
+<%= form_tag albums_path, :method => 'get' do %>
+	<p>
+		<%= text_field_tag :search, params[:search] %>
+		<%= submit_tag "Search", :name => nil %>
+	</p>
+<% end %>
 
 <ul class="artists">
 	<%= render @albums %>
 </ul>
-
-<%= will_paginate %>

@@ -11,10 +11,11 @@ class SongsController < ApplicationController
     redirect_back_or root_path
   end
   
+  
   def create
-     @album = Album.find(params[:artist_id])
+     @album = Album.find(params[:album_id])
      @song = @album.songs.build(params[:song])
-     
+     @song.price = 0.79
     if @song.save
       flash[:success] = "Song created!"
       redirect_to root_path

@@ -1,0 +1,16 @@
+<div>
+	<div id="order">
+		Your basket number is: <%= order.id %>
+	</div>
+	
+	<ul>
+	<% order.line_items.each do |item| %>
+		<li><%= item.song.name %><br><%= item.song.price %>
+			<%= link_to 'Delete?', item, :method => :delete %></li>
+	<% end %>
+	
+	<div id="total">
+		Your basket total is: £<%= order.total %>
+	</div>
+	
+</div>

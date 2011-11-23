@@ -5,7 +5,7 @@
 	<%= @artist.bio %>
 	
 	<% if @artist.photo.exists? then %>
-	<%= image_tag @artist.photo.url(:small) %>
+	<%= image_tag @artist.photo.url(:thumb) %>
 	<% end %>
 	
 	<% unless @artist.albums.empty? %>
@@ -16,5 +16,4 @@
 	<% end %>
 	
 	<br>
-	
 </div>

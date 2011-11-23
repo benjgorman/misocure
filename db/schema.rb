@@ -11,7 +11,21 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111105221531) do
+ActiveRecord::Schema.define(:version => 20111123003956) do
+
+  create_table "albums", :force => true do |t|
+    t.string   "name"
+    t.integer  "artist_id"
+    t.string   "artwork"
+    t.string   "desc"
+    t.integer  "genre_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
+  end
 
   create_table "artists", :force => true do |t|
     t.string   "bio"
@@ -22,6 +36,37 @@ ActiveRecord::Schema.define(:version => 20111105221531) do
     t.string   "photo_file_name"
     t.string   "photo_content_type"
     t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
+  end
+
+  create_table "line_items", :force => true do |t|
+    t.integer  "order_id"
+    t.integer  "song_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "orders", :force => true do |t|
+    t.integer  "status"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.float    "total"
+  end
+
+  create_table "songs", :force => true do |t|
+    t.integer  "artist_id"
+    t.string   "name"
+    t.string   "album_name"
+    t.string   "album_id"
+    t.integer  "genre_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "song_file_name"
+    t.string   "song_content_type"
+    t.integer  "song_file_size"
+    t.datetime "song_updated_at"
+    t.float    "price"
   end
 
   create_table "users", :force => true do |t|

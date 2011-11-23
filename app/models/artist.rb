@@ -16,8 +16,8 @@ class Artist < ActiveRecord::Base
   #paperclip
   has_attached_file :photo,
      :styles => {
-       :thumb=> "100x100>",
-       :small  => "400x400>" },
+       :thumb=> "50x50#",
+       :small  => "100x100>" },
      :storage => :s3,
      :s3_credentials => "#{Rails.root}/config/s3.yml",
      :s3_permissions => 'public-read',

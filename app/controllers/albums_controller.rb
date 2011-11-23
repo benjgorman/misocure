@@ -2,7 +2,8 @@ class AlbumsController < ApplicationController
   
   def index
     @title = "All Albums" 
-    @albums = Album.paginate(:page => params[:page])
+    @albums = Album.search(params[:search])
+   #@albums = Album.paginate(:page => params[:page])
   end
   
   def create

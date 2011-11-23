@@ -1,13 +1,37 @@
 Gormify::Application.routes.draw do
+
   get "sessions/new"
+  get "users/basket"
 
   resources :users
-  resources :sessions, :only => [:new, :create, :destroy]
-  resources :artists
   
+  
+  resources :orders
+  resources :line_items
+  resources :sessions, :only => [:new, :create, :destroy]
+  
+  resources :artists do
+    resources :albums
+  end
+  
+  resources :albums do
+    resources :songs
+  end
+  
+  resources :songs
+  
+  match "/orders/:id", :to => "orders#show", :as => "/cart"
+  
+  match "/cart", :to => "users#basket", :as => "/cart"
+  
+  match '/basket', :to => 'orders#basket'
+  
+      
+  #artists
   match '/newartist', :to => 'artists#new'
   match '/manage', :to => 'artists#manage'
   
+  #users
   match '/signup', :to => 'users#new'
   match '/signin', :to => 'sessions#new'
   match '/signout', :to => 'sessions#destroy'

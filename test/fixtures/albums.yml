@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
+
+one:
+  name: MyString
+  artist_id: 1
+  artwork: MyString
+  desc: MyString
+  genre_id: 1
+
+two:
+  name: MyString
+  artist_id: 1
+  artwork: MyString
+  desc: MyString
+  genre_id: 1

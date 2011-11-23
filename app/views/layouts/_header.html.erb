@@ -18,5 +18,8 @@
 <li><%= link_to "Sign in", signin_path %></i>
 <% end %>
 </ul>
+<ul>
+<li><%= link_to "View Basket", basket_path if current_user %></i>
+</ul>
 </nav>
 </header>
