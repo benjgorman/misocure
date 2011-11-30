@@ -12,8 +12,24 @@ class SongsController < ApplicationController
   end
   
   def download
-    @song = Song.find(params[:song_id])
-    redirect_to(@song.authenticated_url(params[:style]))
+    @orders = current_user.orders.find_all_by_status(1)
+    
+    #@orders = @orders.find_all_by_song(:song_id)
+    #@song = Song.find(params[:song_id])
+    found = false
+    
+    @orders.each do |order|
+      if order.line_items.find_by_song_id(params[:song_id])
+       found = true
+      end
+    end
+    
+    if found == true
+      @song = Song.find(params[:song_id])
+      redirect_to(@song.authenticated_url(params[:style]))
+    else
+      render :action => "fail"
+    end
   end
     
   
@@ -37,8 +53,12 @@ class SongsController < ApplicationController
   end
   
   def show    
-    @song = Song.find(params[:id])
+    @song = Song.find_by_id(params[:id])
+    if @song.nil?
+      render :action => "notfound"
+    else
     @title = @song.name
+    end
   end
   
 end

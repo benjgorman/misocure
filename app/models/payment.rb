@@ -37,20 +37,6 @@ class Payment < ActiveRecord::Base
       EXPRESS_GATEWAY.purchase(price_in_cents, express_purchase_options)
     end
   end
-  
-  def standard_purchase_options
-    {
-      :ip => ip_address,
-      :billing_address => {
-        :name     => "Ryan Bates",
-        :address1 => "123 Main St.",
-        :city     => "New York",
-        :state    => "NY",
-        :country  => "US",
-        :zip      => "10001"
-      }
-    }
-  end
 
   def express_purchase_options
     {

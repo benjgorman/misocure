@@ -2,6 +2,14 @@ class LineItemsController < ApplicationController
   
   def create
     @order = current_user.orders.find_by_status(0)
+    
+    if !@order
+      @order = current_user.orders.new
+      @order.status = 0
+      @order.total = 0.00
+      @order.save
+    end
+    
     song = Song.find(params[:song_id])
     @line_item = @order.line_items.build(song: song)
     

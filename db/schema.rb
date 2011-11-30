@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111124134047) do
+ActiveRecord::Schema.define(:version => 20111130214222) do
 
   create_table "albums", :force => true do |t|
     t.string   "name"
@@ -102,6 +102,8 @@ ActiveRecord::Schema.define(:version => 20111124134047) do
     t.string   "encrypted_password"
     t.string   "salt"
     t.boolean  "admin",              :default => false
+    t.string   "verify_token"
+    t.integer  "status"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

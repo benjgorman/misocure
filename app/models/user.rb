@@ -18,7 +18,8 @@ class User < ActiveRecord::Base
                        :confirmation => true,
                        :length      => { :within =>6..40 }
                        
-   before_save :encrypt_password
+   before_save :encrypt_password 
+   
    
    # Return true if the user's password matchs the submitted password
    def has_password? (submitted_password)
@@ -42,6 +43,16 @@ class User < ActiveRecord::Base
      def encrypt_password
        self.salt = make_salt if new_record?
        self.encrypted_password = encrypt(password)
+       
+       self.verify_token = encrypt2(Time.now.utc)
+     end
+     
+     def secure_hash2(string)
+       Digest::SHA1.hexdigest(string)
+     end
+     
+     def encrypt2(string)
+       secure_hash2("#{salt}--#{string}")
      end
      
      def encrypt(string)

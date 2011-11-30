@@ -5,6 +5,10 @@ class OrdersController < ApplicationController
   def index
    
   end
+
+  def purchases
+    @orders = current_user.orders.find_all_by_status(1)
+  end
   
   def basket
     @user = @current_user

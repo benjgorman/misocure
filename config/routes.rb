@@ -29,10 +29,13 @@ Gormify::Application.routes.draw do
   
   match "/orders/:id", :to => "orders#show", :as => "/cart"
   
+  match "/verify/:id", :to => "users#verify"
+  
   match "/cart", :to => "users#basket", :as => "/cart"
   
   match '/basket', :to => 'orders#basket'
   
+  match '/purchases', :to => 'orders#purchases'
       
   #artists
   match '/newartist', :to => 'artists#new'

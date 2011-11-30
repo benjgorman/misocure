@@ -9,15 +9,32 @@ class UsersController < ApplicationController
     redirect_to users_path
   end
   
+  def verify
+    
+    @user = User.find_by_verify_token(params[:id])
+    
+    if @user.nil?
+      render :action => "notfound"
+    else
+      
+    #User.update_attribute(:status, 1)
+    end
+    
+  end
+  
   def index
     @title = "All users" 
     @users = User.paginate(:page => params[:page])
   end
   
   def show
-    @user = User.find(params[:id])
+    @user = User.find_by_id(params[:id])
+    if @user.nil?
+      render :action => "notfound"
+    else
     @artists = @user.artists.paginate(:page => params[:page])
     @title = @user.name
+    end
   end
   
   def new
@@ -27,6 +44,7 @@ class UsersController < ApplicationController
   
   def create
     @user = User.new(params[:user])
+    @user.status = 0
     if @user.save
       sign_in @user
       flash[:success] = "Welcome to the sample App!"

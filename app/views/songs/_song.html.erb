@@ -1,13 +1,21 @@
 <div>
-	<div class="artist">
-		<%= link_to song.name, song %>
+	<div class="song">
 		
-
+		<div>
+		<%= song.name %>
+		</div>
 		
+		<div>
+		<%= song.album.name %>
+		</div>
+		
+		<div>
+		<%= song.album.artist.name %>
+		</div>
+		
+		<div>
 		<%= button_to price = 'Buy ' << song.price.to_s, line_items_path(song_id: song)%>
-		
-		<%= link_to 'Delete?', song, :method => :delete %>
-
+		</div>
 		
 	</div>
 </div>

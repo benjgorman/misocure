@@ -28,8 +28,15 @@
 <% else %>
 
 <%= f.hidden_field :express_token %>
-<p>Name: <%=h @payment.first_name %> <%=h @payment.last_name %>
+
+<p>Full Name: <%=h @payment.first_name %> <%=h @payment.last_name %>
+	
+
+	
+<%=h render @order %> 
 <p>TO DO</p>
+
+
 <% end %>
 
 <p><%= f.submit "Complete Order" %>

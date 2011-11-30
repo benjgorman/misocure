@@ -3,6 +3,8 @@ class Order < ActiveRecord::Base
   
   has_many :line_items
   
+  has_many :songs, :through => :line_items
+  
   has_one :payment
 
 end

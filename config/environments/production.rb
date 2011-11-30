@@ -59,6 +59,7 @@ Gormify::Application.configure do
   config.active_support.deprecation = :notify
   
   config.after_initialize do
+    ActiveMerchant::Billing::PaypalExpressGateway.default_currency = 'GBP'
     ActiveMerchant::Billing::Base.mode = :production
     paypal_options = {
       :login => "ben-go_1322070516_biz_api1.hotmail.co.uk",

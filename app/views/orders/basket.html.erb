@@ -3,7 +3,6 @@
 </div>
 
 <%= button_to 'Empty Cart', @order, method: :delete %>
-<%= link_to "Checkout", new_payment_path %>
 
 <p>
   <%= link_to image_tag("https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif"), payments_express_path %>

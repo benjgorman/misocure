@@ -12,6 +12,7 @@ class PaymentsController < ApplicationController
   
   def new
     @payment = Payment.new(:express_token => params[:token])
+    @order = current_user.orders.find_by_status(0)
   end
   
   def create

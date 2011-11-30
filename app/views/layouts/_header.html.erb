@@ -15,6 +15,7 @@
 </ul>
 <ul>
 <% if signed_in? %>
+<li><%= link_to "View Purchases", purchases_path if current_user %></i>
 <li><%= link_to "View Basket", basket_path if current_user %></i>
 <li><%= link_to "Sign Out", signout_path, :method => :delete %></li>
 <% else %>
