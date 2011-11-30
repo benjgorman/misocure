@@ -1,18 +1,23 @@
-<h1>Song Upload</h1>
+<h3>Upload a track</h3>
 <%= form_for [@album, @song], :html => { :multipart => true }  do |f| %>
 
 	<%= render 'shared/error_messages', :object => f.object %>
 	
 	<div class="field">
-		<%= f.label :name %><br />
+		<%= f.label :name, "Track name: " %><br />
+		<p class="warning">You can edit this later.</p>
 		<%= f.text_field :name %>
 	</div>
 	
 	<div class="field">
+		 <%= f.label :name, "Upload a track from your computer: " %><br />
+		 <div>
+		 <p class="warning">We currently only accept tracks in the mp3 file format.</p>
+		 </div>
 		 <%= f.file_field :song %>
 	</div>
 	
 	<div class="actions">
-		<%= f.submit "Sign up" %>
+		<%= f.submit "Save track" %>
 	</div>
 <% end %>

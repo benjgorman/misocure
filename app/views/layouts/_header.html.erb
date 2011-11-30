@@ -1,4 +1,4 @@
-<header>
+<header class="main_nav">
 <%= link_to logo, root_path %>
 <nav class = "round">
 <ul>
@@ -12,14 +12,15 @@
 <li><%= link_to "Settings", edit_user_path(current_user) %></li>
 <% end %>
 <li><%= link_to "Help", help_path %></li>
+</ul>
+<ul>
 <% if signed_in? %>
+<li><%= link_to "View Basket", basket_path if current_user %></i>
 <li><%= link_to "Sign Out", signout_path, :method => :delete %></li>
 <% else %>
 <li><%= link_to "Sign in", signin_path %></i>
 <% end %>
 </ul>
-<ul>
-<li><%= link_to "View Basket", basket_path if current_user %></i>
-</ul>
 </nav>
 </header>
+

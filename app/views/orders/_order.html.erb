@@ -1,16 +1,18 @@
-<div>
-	<div id="order">
-		Your basket number is: <%= order.id %>
-	</div>
-	
-	<ul>
-	<% order.line_items.each do |item| %>
-		<li><%= item.song.name %><br><%= item.song.price %>
-			<%= link_to 'Delete?', item, :method => :delete %></li>
-	<% end %>
-	
-	<div id="total">
-		Your basket total is: £<%= order.total %>
-	</div>
-	
-</div>
+
+<table id="line_items">
+  <tr>
+    <th>Product</th>
+    <th class="price">Unit Price</th>
+  </tr>
+  <% for line_item in order.line_items %>
+    <tr>
+      <td><%=h line_item.song.name %></td>
+      <td class="price"><%= number_to_currency(line_item.song.price) %></td>
+    </tr>
+  <% end %>
+  <tr>
+    <td class="total price" colspan="4">
+      Total: <%= number_to_currency order.total %>
+    </td>
+  </tr>
+</table>

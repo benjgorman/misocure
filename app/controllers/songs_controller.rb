@@ -11,6 +11,11 @@ class SongsController < ApplicationController
     redirect_back_or root_path
   end
   
+  def download
+    @song = Song.find(params[:song_id])
+    redirect_to(@song.authenticated_url(params[:style]))
+  end
+    
   
   def create
      @album = Album.find(params[:album_id])

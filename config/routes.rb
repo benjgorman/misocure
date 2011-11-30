@@ -1,12 +1,16 @@
 Gormify::Application.routes.draw do
+  get "payments/express"
+  get "songs/download"
+  #resources :payments, :new => {:express => :get}
+  resources :payments
 
   get "sessions/new"
   get "users/basket"
 
   resources :users
   
-  
   resources :orders
+  
   resources :line_items
   resources :sessions, :only => [:new, :create, :destroy]
   
@@ -18,7 +22,10 @@ Gormify::Application.routes.draw do
     resources :songs
   end
   
-  resources :songs
+  
+  resources :songs do
+    get :download
+  end
   
   match "/orders/:id", :to => "orders#show", :as => "/cart"
   

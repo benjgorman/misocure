@@ -1,0 +1,38 @@
+<%= form_for @payment do |f| %>
+<% if @payment.express_token.blank? %>
+  <p>
+    <%= f.label :first_name %><br />
+    <%= f.text_field :first_name %>
+  </p>
+  <p>
+    <%= f.label :last_name %><br />
+    <%= f.text_field :last_name %>
+  </p>
+  <p>
+    <%= f.label :card_type %><br />
+    <%= f.select :card_type, [["Visa", "visa"], ["MasterCard", "master"], ["Discover", "discover"], ["American Express", "american_express"]] %>
+  </p>
+  <p>
+    <%= f.label :card_number %><br />
+    <%= f.text_field :card_number %>
+  </p>
+  <p>
+    <%= f.label :card_verification, "Card Verficiation Value CVV" %><br />
+    <%= f.text_field :card_verification %>
+  </p>
+   <p>
+    <%= f.label :card_expires_on %><br />
+    <%= f.date_select :card_expires_on, :discard_day => true, :start_year => Date.today.year, :end_year => (Date.today.year+10), :add_month_numbers => true %>
+  </p>
+  <p><%= f.submit "Submit" %></p>
+<% else %>
+
+<%= f.hidden_field :express_token %>
+<p>Name: <%=h @payment.first_name %> <%=h @payment.last_name %>
+<p>TO DO</p>
+<% end %>
+
+<p><%= f.submit "Complete Order" %>
+<% end %>
+
+

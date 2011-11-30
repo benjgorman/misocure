@@ -1,19 +1,30 @@
-<h1>Artist Sign Up</h1>
+<h3>Add an Album or Single</h3>
+<p>After filling this out, you can upload some tracks.</p>
 <%= form_for [@artist, @album], :html => { :multipart => true } do |f| %>
 
 	<%= render 'shared/error_messages', :object => f.object %>
 	<div class="field">
-		<%= f.label :name %><br />
+		<%= f.label :name, "What's the title of your masterpiece?" %><br />
+		<div>
+		<p class="warning">Make sure this is correct, once you've named it you won't be able to change it!</p>
+		</div>
 		<%= f.text_field :name %>
 	</div>
 	<div class="field">
-		<%= f.label :desc %><br />
+		<%= f.label :desc, "Can you sum it up in 140 Characters?"%><br />
+		<div>
+		<p class="warning">You don't have to, but try and entice your listeners.</p>
+		</div>
 		<%= f.text_field :desc %>
 	</div>
 	<div class="field">
+		 <%= f.label :name, "Upload your album cover:" %><br />
+		 <div>
+		 <p class="warning">You can change this at any time.</p>
+		 </div>
 		 <%= f.file_field :photo %>
 	</div>
 	<div class="actions">
-		<%= f.submit "Add up" %>
+		<%= f.submit "Save Album" %>
 	</div>
 <% end %>

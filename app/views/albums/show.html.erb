@@ -1,11 +1,18 @@
 <div class="album">
 	<div class = "main">
 		
-	<%= @album.name %>
+	<%= @album.name %><br>
 	<%= @album.desc %>
 	
-	<% unless @album.songs.empty? %>
-		<div class = "albumlist">
+	<% if @album.songs.empty? %>
+	<div class = "emptyalbum">
+		<p>Looks like this band hasn't uploaded any tracks for this album.</p>
+	</dvi>
+	
+	<%= link_to "Add Track", new_album_song_path(@album) %>
+	
+	<% else %>
+		<div class = "tracklist">
 			<%= render @songs %>
 		</div>
 		<%= will_paginate @songs %>

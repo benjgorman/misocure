@@ -57,4 +57,15 @@ Gormify::Application.configure do
 
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
+  
+  config.after_initialize do
+    ActiveMerchant::Billing::Base.mode = :production
+    paypal_options = {
+      :login => "ben-go_1322070516_biz_api1.hotmail.co.uk",
+      :password => "1322070557",
+      :signature => "AqP-WMxakBZ7qhQxorGVUyvJwlTkAojF6u8Qusqu2Y3G6VvJw72D8u6w"
+    }
+    ::STANDARD_GATEWAY = ActiveMerchant::Billing::PaypalCaGateway.new(paypal_options)
+    ::EXPRESS_GATEWAY = ActiveMerchant::Billing::PaypalExpressGateway.new(paypal_options)
+  end
 end

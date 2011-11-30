@@ -16,7 +16,7 @@ Gormify::Application.configure do
   config.action_controller.perform_caching = false
 
   # Don't care if the mailer can't send
-  config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.raise_delivery_errors = true
 
   # Print deprecation notices to the Rails logger
   config.active_support.deprecation = :log
@@ -32,5 +32,22 @@ Gormify::Application.configure do
   
   config.after_initialize do
     ActiveMerchant::Billing::Base.mode = :test
+    paypal_options = {
+      :login => "ben-go_1322070516_biz_api1.hotmail.co.uk",
+      :password => "1322070557",
+      :signature => "AqP-WMxakBZ7qhQxorGVUyvJwlTkAojF6u8Qusqu2Y3G6VvJw72D8u6w"
+    }
+    ::STANDARD_GATEWAY = ActiveMerchant::Billing::PaypalGateway.new(paypal_options)
+    ::EXPRESS_GATEWAY = ActiveMerchant::Billing::PaypalExpressGateway.new(paypal_options)
   end
+   config.action_mailer.delivery_method = :smtp
+   
+   config.action_mailer.smtp_settings = {
+    :address        => 'havana.footholds.net',
+    :port           => 26,
+    :domain         => 'havana.footholds.net',
+    :authentication => :login,
+    :user_name      => 'misocure+benjgorman.com',
+    :password       => 'twistedtail'
+  }
 end

@@ -30,6 +30,7 @@ class UsersController < ApplicationController
     if @user.save
       sign_in @user
       flash[:success] = "Welcome to the sample App!"
+      MisocureMailer.welcome_email(@user).deliver
       redirect_to @user
     else
       @title = "Sign Up"

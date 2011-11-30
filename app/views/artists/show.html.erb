@@ -1,19 +1,23 @@
 <div class="profile">
-	<div class = "main">
-		
-	<%= @artist.name %>
-	<%= @artist.bio %>
+	<div class = "artistinfo">
+		<% if @artist.photo.exists? then %>
+		<%= image_tag @artist.photo.url(:thumb) %>
+		<% end %>
+		<h4><%= @artist.name %></h4>
+		<%= @artist.bio %>
+	</div>
+	<div>
+	<%= link_to "Add Album", new_artist_album_path(@artist) %>
 	
-	<% if @artist.photo.exists? then %>
-	<%= image_tag @artist.photo.url(:thumb) %>
-	<% end %>
+	<%= link_to "View Sales Stats", manage_path %>
+	</div>
 	
+	<div class=albums>
 	<% unless @artist.albums.empty? %>
 		<div class = "albumlist">
 			<%= render @albums %>
 		</div>
 		<%= will_paginate @albums %>
 	<% end %>
-	
-	<br>
+	</div>
 </div>

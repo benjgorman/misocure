@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111123003956) do
+ActiveRecord::Schema.define(:version => 20111124134047) do
 
   create_table "albums", :force => true do |t|
     t.string   "name"
@@ -46,12 +46,37 @@ ActiveRecord::Schema.define(:version => 20111123003956) do
     t.datetime "updated_at"
   end
 
+  create_table "order_transactions", :force => true do |t|
+    t.integer  "payment_id"
+    t.string   "action"
+    t.integer  "amount"
+    t.boolean  "success"
+    t.string   "authorization"
+    t.string   "message"
+    t.text     "params"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "orders", :force => true do |t|
     t.integer  "status"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.float    "total"
+  end
+
+  create_table "payments", :force => true do |t|
+    t.integer  "order_id"
+    t.string   "ip_address"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "card_type"
+    t.date     "card_expires_on"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "express_token"
+    t.string   "express_payer_id"
   end
 
   create_table "songs", :force => true do |t|

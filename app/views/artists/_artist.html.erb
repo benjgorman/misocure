@@ -2,6 +2,8 @@
 	<div class="artist">
 		<%= link_to artist.name, artist %>
 		
-		| <%= link_to 'Delete?', artist, :method => :delete %>
+		<% if artist.user_id == current_user %>
+		| <%= link_to 'Delete?', user, :method => :delete %>
+		<% end %>
 	</div>
 </div>

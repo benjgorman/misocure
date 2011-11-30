@@ -43,6 +43,7 @@ class ArtistsController < ApplicationController
   end
   
   private
+  
     def authorized_user
       @artist = Artist.find(params[:id])
       redirect_to root_path unless current_user?(@artist.user)
