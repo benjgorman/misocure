@@ -10,7 +10,12 @@ class ArtistsController < ApplicationController
   def manage
     @user = @current_user
     @title = "Artist Manager"
+    
     @artists = @user.artists.paginate(:page => params[:page])
+    
+    if @artists.size == 0
+      render :action => "empty"
+    end
   end
   
   def edit

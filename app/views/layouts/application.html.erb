@@ -9,6 +9,7 @@
   <body>
     <div class="container">
       <%= render 'layouts/header' %>
+      <%= render 'layouts/bottom_header' %>
       <section class="round">
         <% flash.each do |key, value| %>
           <div class="flash <%= key %>"><%= value %></div>
@@ -17,7 +18,7 @@
         <%= yield %>
       </section>
       <%= render 'layouts/footer' %>
-      <%= debug(params) if Rails.env.development? %>
+      <!--<%= debug(params) if Rails.env.development? %> -->
     </div>
   </body>
 </html>

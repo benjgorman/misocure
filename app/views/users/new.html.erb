@@ -1,6 +1,4 @@
-<h1>Sign Up</h1>
-
-
+<h4>Sign Up</h4>
 
 <%= form_for(@user) do |f| %>
 	<%= render 'shared/error_messages', :object => f.object %>
@@ -20,8 +18,14 @@
 		<%= f.label :password_confirmation, "Confirmation" %><br />
 		<%= f.password_field :password_confirmation %>
 	</div>
+	<div>
+	<%= f.check_box :terms %>
+	<%= f.label :terms, "I accept the terms of service" %><br />
+	<%= link_to "Terms of Service", terms_path, :class => "button" %>
+	</div>
+	
 	<div class="actions">
-		<%= f.submit "Sign up" %>
+		<%= f.submit "Sign up", :class => "button"%>
 	</div>
 <% end %>
 	

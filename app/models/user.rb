@@ -1,7 +1,7 @@
 require 'digest'
 class User < ActiveRecord::Base
   attr_accessor :password
-  attr_accessible :name, :email, :password, :password_confirmation
+  attr_accessible :name, :email, :password, :password_confirmation, :terms
   
   has_many :artists, :dependent => :destroy
   has_many :orders
@@ -17,7 +17,9 @@ class User < ActiveRecord::Base
   validates :password, :presence => true,
                        :confirmation => true,
                        :length      => { :within =>6..40 }
-                       
+                     
+   validates_acceptance_of :terms
+   
    before_save :encrypt_password
    
    def self.search(search)

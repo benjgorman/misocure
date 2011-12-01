@@ -1,8 +1,14 @@
 <% if signed_in? %>
 <h3>Welcome back <%= current_user.name %></h3>
+<p>Misocure is an ultra secure music store. You can purchase and redownload songs as often as you'd like.
+Or if you manage a band or artist you can upload their music and sell their music to users around the world.
+</p>
 <% else %>
-<p>Home page bleh</p>
+<p>Misocure is an ultra secure music store. You can purchase and redownload songs as often as you'd like.
+Or if you manage a band or artist you can upload their music and sell their music to users around the world.
+</p>
 
-
-<%= link_to "Sign up now!", signup_path, :class => "signup_button round" %>
+<div align=center>
+<%= link_to "Sign up now!", signup_path, :class => "signup" %>
+</div>
 <% end %>

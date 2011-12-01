@@ -22,9 +22,9 @@
 		 <div>
 		 <p class="warning">You can change this at any time.</p>
 		 </div>
-		 <%= f.file_field :photo %>
+		 <%= f.file_field :photo, :class => "button" %>
 	</div>
 	<div class="actions">
-		<%= f.submit "Save Album" %>
+		<%= f.submit "Save Album", :class => "button"%>
 	</div>
 <% end %>

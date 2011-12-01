@@ -1,9 +1,10 @@
 <div class="order">
 	<%= render @order %>
 </div>
-
-<%= button_to 'Empty Cart', @order, method: :delete %>
+<div class="round">
+<%= link_to 'Empty Cart', @order, method: :delete, :class => "button delete"  %>
 
 <p>
   <%= link_to image_tag("https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif"), payments_express_path %>
 </p>
+</div>

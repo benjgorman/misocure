@@ -47,6 +47,8 @@ Gormify::Application.routes.draw do
   match '/signout', :to => 'sessions#destroy'
   
   match '/contact', :to => 'pages#contact'
+  match '/terms', :to => 'pages#terms'
+  match '/privacy', :to => 'pages#privacy'
   match '/about', :to => 'pages#about'
   match '/help', :to => 'pages#help'
   root :to => 'pages#home'

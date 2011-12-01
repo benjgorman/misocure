@@ -16,7 +16,7 @@
 		<div>
 		<p class="warning">This photo will be used to identify your band around the website, and on your profile page.</p>
 		</div>
-		 <%= f.file_field :photo %>
+		 <%= f.file_field :photo, :class => "button" %>
 	</div>
 	<div class="field">
 		<%= f.label :bio, "Why don't you tell us about yourself?" %><br />
@@ -26,6 +26,6 @@
 		<%= f.text_area :bio %>
 	</div>
 	<div class="actions">
-		<%= f.submit "Sign this artist up" %>
+		<%= f.submit "Sign this artist up", :class => "button"%>
 	</div>
 <% end %>

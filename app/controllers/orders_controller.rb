@@ -8,6 +8,10 @@ class OrdersController < ApplicationController
 
   def purchases
     @orders = current_user.orders.find_all_by_status(1)
+    
+    if @orders.size == 0
+      render :action => "empty"
+    end
   end
   
   def basket
@@ -40,7 +44,7 @@ class OrdersController < ApplicationController
     @order = current_user.orders.find_by_status(0)
     @order.destroy
     
-    flash[:success] = "Your Cart is now emepty. Better get shopping buddy!"
+    flash[:success] = "Your Cart is now empty. Better get shopping buddy!"
     
     redirect_to songs_path
    

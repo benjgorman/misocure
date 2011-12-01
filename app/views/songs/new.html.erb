@@ -14,10 +14,10 @@
 		 <div>
 		 <p class="warning">We currently only accept tracks in the mp3 file format.</p>
 		 </div>
-		 <%= f.file_field :song %>
+		 <%= f.file_field :song, :class => "button" %>
 	</div>
 	
 	<div class="actions">
-		<%= f.submit "Save track" %>
+		<%= f.submit "Save track", :class => "button" %>
 	</div>
 <% end %>

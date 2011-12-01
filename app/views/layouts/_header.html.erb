@@ -2,26 +2,23 @@
 <%= link_to logo, root_path %>
 <nav class = "round">
 <ul>
-<li><%= link_to "Home", root_path %></li>
 <% if signed_in? %>
-<li><%= link_to "Users", users_path %></li>
-<li><%= link_to "Profile", current_user %></li>
-<% if signed_in? %>
-<Li><%= link_to "Manage Artists", manage_path %>
+<li><%= link_to "Home", root_path, :class => "menu_button"  %></li>
+<li><%= link_to "Artists", artists_path, :class => "menu_button"  %></li>
+<li><%= link_to "Albums", albums_path, :class => "menu_button"  %></li>
+<li><%= link_to "Songs", songs_path, :class => "menu_button"  %></li>
+<li><%= link_to "Settings", edit_user_path(current_user), :class => "menu_button"  %></li>
 <% end %>
-<li><%= link_to "Settings", edit_user_path(current_user) %></li>
-<% end %>
-<li><%= link_to "Help", help_path %></li>
 </ul>
 <ul>
 <% if signed_in? %>
-<li><%= link_to "View Purchases", purchases_path if current_user %></i>
-<li><%= link_to "View Basket", basket_path if current_user %></i>
-<li><%= link_to "Sign Out", signout_path, :method => :delete %></li>
+<Li><%= link_to "Manage Artists", manage_path, :class => "menu_button"  %>
+<li><%= link_to "View Purchases", purchases_path, :class => "menu_button"  %></i>
+<li><%= link_to "View Basket", basket_path, :class => "menu_button"  %></i>
+<li><%= link_to "Sign Out", signout_path, :method => :delete, :class => "menu_button"  %></li>
 <% else %>
-<li><%= link_to "Sign in", signin_path %></i>
+<li><%= link_to "Sign in", signin_path, :class => "menu_button"  %></i>
 <% end %>
 </ul>
 </nav>
 </header>
-
