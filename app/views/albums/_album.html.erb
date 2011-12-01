@@ -2,6 +2,8 @@
 	<div class="artist">
 		<%= link_to album.name, album %>
 		
-		| <%= link_to 'Delete?', album, :method => :delete %>
+		<% if current_user.admin? || album.artist.user == current_user %>
+			| <%= link_to 'Delete?', album, :method => :delete %>
+		<% end %>
 	</div>
 </div>

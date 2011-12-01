@@ -15,6 +15,13 @@ class Song < ActiveRecord::Base
   validates_attachment_content_type :song, :content_type => [ 'application/mp3', 'application/x-mp3', 'audio/mpeg', 'audio/mp3' ]
   validates_attachment_size :song, :less_than => 10.megabytes
 
+  def self.search(search)
+      if search
+        find(:all, :conditions => ['name LIKE ?', "%#{search}%"])
+      else
+        find(:all)
+     end      
+  end
   def download_url(style = nil, include_updated_timestamp = true)
     url = Paperclip::Interpolations.interpolate('/songs/:style/:id/:filename', song, style || song.default_style)
     include_updated_timestamp && song.updated_at ? [url, song.updated_at].compact.join(url.include?("?") ? "&" : "?") : url

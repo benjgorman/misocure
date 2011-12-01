@@ -1,9 +1,12 @@
-<h4>All Artists</h4>
+<h4>Browse Artists</h4>
 
-<%= will_paginate %>
+<%= form_tag songs_path, :method => 'get' do %>
+	<p>
+		<%= text_field_tag :search, params[:search] %>
+		<%= submit_tag "Search", :name => nil %>
+	</p>
+<% end %>
 
 <ul class="artists">
 	<%= render @artists %>
 </ul>
-
-<%= will_paginate %>

@@ -1,5 +1,5 @@
 class LineItemsController < ApplicationController
-  
+  before_filter :authenticate
   def create
     @order = current_user.orders.find_by_status(0)
     

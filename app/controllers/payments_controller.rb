@@ -1,5 +1,5 @@
 class PaymentsController < ApplicationController
-  
+  before_filter :authenticate
    def express
     @order = current_user.orders.find_by_status(0)
     response = EXPRESS_GATEWAY.setup_purchase(@order.total,

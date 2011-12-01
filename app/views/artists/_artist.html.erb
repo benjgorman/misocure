@@ -1,9 +1,13 @@
 <div>
 	<div class="artist">
 		<%= link_to artist.name, artist %>
+	
+		<% if artist.user == current_user %>
+			| <%= link_to 'Edit', edit_artist_path(artist) %>
+		<% end %>
 		
-		<% if artist.user_id == current_user %>
-		| <%= link_to 'Delete?', user, :method => :delete %>
+		<% if current_user.admin? || artist.user == current_user %>
+			| <%= link_to 'Delete?', artist, :method => :delete %>
 		<% end %>
 	</div>
 </div>

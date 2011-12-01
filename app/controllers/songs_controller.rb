@@ -1,8 +1,10 @@
 class SongsController < ApplicationController
+  before_filter :authenticate
+  before_filter :authorized_user, :only => :destory
   
   def index
-    @title = "All Songs" 
-    @songs = Song.paginate(:page => params[:page])
+    @title = "Browse users" 
+    @songs = Song.search(params[:search])
   end
   
   def destroy
@@ -14,8 +16,6 @@ class SongsController < ApplicationController
   def download
     @orders = current_user.orders.find_all_by_status(1)
     
-    #@orders = @orders.find_all_by_song(:song_id)
-    #@song = Song.find(params[:song_id])
     found = false
     
     @orders.each do |order|
@@ -32,18 +32,24 @@ class SongsController < ApplicationController
     end
   end
     
-  
   def create
      @album = Album.find(params[:album_id])
      @song = @album.songs.build(params[:song])
      @song.price = 0.79
     if @song.save
       flash[:success] = "Song created!"
-      redirect_to root_path
+      redirect_to @album
     else
-      flash.now[:message] = @song.errors.first 
-      render 'pages/home'
+      @title = "Add a Song"
+      render 'new'
     end
+  end
+  
+  def destroy
+    @song = Song.find(params[:id])
+    @song.destroy
+    flash[:success] = "Song destroyed."
+    redirect_back_or songs_path
   end
   
   def new
@@ -59,6 +65,12 @@ class SongsController < ApplicationController
     else
     @title = @song.name
     end
+  end
+  private
+  
+  def authorized_user
+      @song = Song.find(params[:id])
+      redirect_to song_url unless current_user?(@song.album.artist.user)
   end
   
 end

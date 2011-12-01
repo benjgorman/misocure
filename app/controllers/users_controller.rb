@@ -11,20 +11,38 @@ class UsersController < ApplicationController
   
   def verify
     
-    @user = User.find_by_verify_token(params[:id])
+    #@user = User.find_by_verify_token(params[:id])
+    @user = User.find(:all, :conditions => {:verify_token => params[:id]})
     
     if @user.nil?
-      render :action => "notfound"
-    else
+      render :action => "notverified"
+    end
+    
+    found = 0
       
-    #User.update_attribute(:status, 1)
+     @user.each_with_index do |user, i|
+          user.update_attribute(:status, 1)
+          found = 2
+      end
+     
+     
+    if found == 0
+      render :action => "notverified"
+    end
+    
+    if found == 1
+      render :action => "reverified"
+    end
+    
+    if found == 2
+      render :action => "verify"
     end
     
   end
   
   def index
-    @title = "All users" 
-    @users = User.paginate(:page => params[:page])
+    @title = "Browse users" 
+    @users = User.search(params[:search])
   end
   
   def show

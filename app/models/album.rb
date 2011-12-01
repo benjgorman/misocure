@@ -4,6 +4,8 @@ class Album < ActiveRecord::Base
   
   has_many :songs, :dependent => :destroy
   
+  validates :name, :presence => true, :length => { :maximum => 50}
+  
   def self.search(search)
     if search
       find(:all, :conditions => ['name LIKE ?', "%#{search}%"])
@@ -11,6 +13,7 @@ class Album < ActiveRecord::Base
       find(:all)
     end      
   end
+  
   #paperclip
   has_attached_file :photo,
      :styles => {

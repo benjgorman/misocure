@@ -6,10 +6,16 @@ class Artist < ActiveRecord::Base
   has_many :albums, :dependent => :destroy
   
   validates :name, :presence => true, :length => { :maximum => 50}
-  validates :bio, :presence => true, :length => { :maximum => 200}
+  validates :bio, :presence => true, :length => { :maximum => 140}
   validates :user_id, :presence => true
   
-  
+  def self.search(search)
+    if search
+      find(:all, :conditions => ['name LIKE ?', "%#{search}%"])
+    else
+      find(:all)
+    end      
+  end
   
   default_scope :order => 'artists.created_at DESC'
   

@@ -3,8 +3,8 @@ class ArtistsController < ApplicationController
   before_filter :authorized_user, :only => :destory
   
   def index
-    @title = "All Artists" 
-    @artists = Artist.paginate(:page => params[:page])
+    @title = "Browse Artists" 
+    @artists = Artist.search(params[:search])
   end
   
   def manage
@@ -13,22 +13,39 @@ class ArtistsController < ApplicationController
     @artists = @user.artists.paginate(:page => params[:page])
   end
   
+  def edit
+    @title = "Edit artist"
+    @artist = Artist.find(params[:id])
+  end
+  
   def create
     @artist = current_user.artists.new(params[:artist])
     
     if @artist.save
       flash[:success] = "Artist created!"
-      redirect_to root_path
+      redirect_to @artist
     else
-      flash.now[:message] = @artist.errors.first 
-      render 'pages/home'
+      @title = "Artist"
+      render 'new'
+    end
+  end
+  
+  def update
+    @artist = Artist.find(params[:id])
+    if @artist.update_attributes(params[:artist])
+      flash[:success] = "Artist Updated"
+      redirect_to @artist
+    else
+      @title = "Edit user"
+      render 'edit'
     end
   end
   
   def destroy
+    @artist = Artist.find(params[:id])
     @artist.destroy
     flash[:success] = "Artist destroyed."
-    redirect_back_or root_path
+    redirect_back_or artists_path
   end
   
   def new
@@ -46,7 +63,7 @@ class ArtistsController < ApplicationController
   
     def authorized_user
       @artist = Artist.find(params[:id])
-      redirect_to root_path unless current_user?(@artist.user)
+      redirect_to artist_url unless current_user?(@artist.user)
     end
   
 end

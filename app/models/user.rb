@@ -18,7 +18,15 @@ class User < ActiveRecord::Base
                        :confirmation => true,
                        :length      => { :within =>6..40 }
                        
-   before_save :encrypt_password 
+   before_save :encrypt_password
+   
+   def self.search(search)
+    if search
+      find(:all, :conditions => ['name LIKE ?', "%#{search}%"])
+    else
+      find(:all)
+    end      
+  end
    
    
    # Return true if the user's password matchs the submitted password

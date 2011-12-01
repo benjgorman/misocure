@@ -1,9 +1,10 @@
 class AlbumsController < ApplicationController
+  before_filter :authenticate
+  before_filter :authorized_user, :only => :destory
   
   def index
     @title = "All Albums" 
     @albums = Album.search(params[:search])
-   #@albums = Album.paginate(:page => params[:page])
   end
   
   def create
@@ -12,10 +13,10 @@ class AlbumsController < ApplicationController
      
     if @album.save
       flash[:success] = "Album created!"
-      redirect_to root_path
+      redirect_to @album
     else
-      flash.now[:message] = @album.errors.first 
-      render 'pages/home'
+      @title = "Add an Album"
+      render 'new'
     end
   end
   
@@ -23,7 +24,7 @@ class AlbumsController < ApplicationController
     @album = Album.find(params[:id])
     @album.destroy
     flash[:success] = "Album destroyed."
-    redirect_back_or root_path
+    redirect_back_or albums_path
   end
   
    def new
@@ -37,5 +38,12 @@ class AlbumsController < ApplicationController
     @songs = @album.songs.paginate(:page => params[:page])
     @title = @album.name
   end
+  
+  private
+  
+  def authorized_user
+      @album = Albums.find(params[:id])
+      redirect_to album_url unless current_user?(@album.artist.user)
+    end
   
 end

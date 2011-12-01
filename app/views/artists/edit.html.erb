@@ -5,13 +5,6 @@
 
 	<%= render 'shared/error_messages', :object => f.object %>
 	<div class="field">
-		<%= f.label :name, "What's your artist/band called?" %><br />
-		<div>
-		<p class="warning">Make sure this is correct, once you've claimed it you won't be able to change it!</p>
-		</div>
-		<%= f.text_field :name %>
-	</div>
-	<div class="field">
 		 <%= f.label :name, "Upload a photo that represents your band:" %><br />
 		<div>
 		<p class="warning">This photo will be used to identify your band around the website, and on your profile page.</p>
@@ -21,11 +14,11 @@
 	<div class="field">
 		<%= f.label :bio, "Why don't you tell us about yourself?" %><br />
 		<div>
-		<p class="warning">You can keep this brief for now, you can update it at any time</p>
+		<p class="warning">Keep it brief (under 140 characters!)</p>
 		</div>
 		<%= f.text_area :bio %>
 	</div>
-	<div class="actions">
-		<%= f.submit "Sign this artist up" %>
+	<div class = "actions">
+		<%= f.submit "Update"%>
 	</div>
 <% end %>
